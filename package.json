@@ -1,0 +1,25 @@
+{
+  "name": "lovelace-card-preloader",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Lovelace Card Preloader",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com:gadgetchnnel/lovelace-card-preloader"
+  },
+  "author": "Steven Rollason",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "main": "webpack.config.js",
+  "dependencies": {
+    "custom-card-helpers": "^1.4.0"
+  },
+  "keywords": []
+}
