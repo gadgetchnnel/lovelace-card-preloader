@@ -14,8 +14,7 @@ This can be added as a custom repository to HACS
 ```
 resources:
   - url: /local/your/path/lovelace-card-preloader.js
-    type: js
-    
+    type: js  
 ```
 
 ## Usage
