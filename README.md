@@ -26,3 +26,13 @@ preload:
   - markdown
   - gauge
 ```
+
+## Note
+
+You are likely to see errors logged in the browser console when the page loads, for example:
+
+```text
+hui-markdown-card Error: Invalid Configuration: Content Required
+```
+
+This is because preloading involves creating an empty instance of the card with no config.
