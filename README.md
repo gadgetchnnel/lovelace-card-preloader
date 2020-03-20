@@ -4,7 +4,7 @@ Allows preloading of Lovelace cards as a work around for changes in Home Assista
 ## Installation
 
 ### Via HACS
-This can be added as a custom repository to HACS
+Find the plugin in HACS; install it.
 
 ### Manually
 * Download all the files
