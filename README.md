@@ -1,5 +1,5 @@
 # Lovelace Card Preloader
-Allows preloading of Lovelace cards as a work around for changes in Home Assistant 0.107
+Allows preloading of Lovelace cards and rows as a work around for changes in Home Assistant 0.107
 
 ## Installation
 
@@ -22,17 +22,12 @@ resources:
 Example configuration - add to the start of your Lovelace configuration:
 
 ```
-preload:
+preload_cards:
   - markdown
   - gauge
+preload_rows:
+  - divider
 ```
 
-## Note
+**Note:** Versions prior to 0.0.3 used a **preload** option (which only supported preloading cards), this has been deprecated and may be removed in a later version and it is recommended that you update your config to use **preload_cards** and **preload_rows**
 
-You are likely to see errors logged in the browser console when the page loads, for example:
-
-```text
-hui-markdown-card Error: Invalid Configuration: Content Required
-```
-
-This is because preloading involves creating an empty instance of the card with no config.
