@@ -1,29 +1,61 @@
-const helpers = require('custom-card-helpers');
-const console_error = window.console.error;
-
-const preloadCard = (type) => {
-	window.loadCardHelpers().then(({ createCardElement }) => {
+class Preloader {
+	constructor(){
+ 		this.helpers = require('custom-card-helpers');
+		this.console_error = window.console.error;
+ 	}
+ 	
+	preloadElement(type, name) {
 			window.console.error = function(){
-				if(arguments[0].includes(type)){
+				if(arguments[0].includes(name)){
 					return;
 				}
 				
 				console_error(...arguments);
 			};
-			createCardElement({type});
-			window.console.error = console_error;
-			console.log(`Preloaded ${type}`);
-		})
+			
+			if(type == "card"){
+				this.createCardElement({type: name});
+			}
+			else if(type == "row"){
+				this.createRowElement({type: name});
+			}
+			
+			//window.console.error = this.console_error;
+			console.log(`Preloaded ${type} ${name}`);
 	}
 
-var cardsToPreload = [];
-
-function preloadCards(){ 
-    let preload = helpers.getLovelace().config.preload;
-    if(!preload) return;
-    preload.forEach(cardtype => {
-    	preloadCard(cardtype);	
-    });
+	preloadCards(){
+		window.loadCardHelpers().then(({ createCardElement, createRowElement }) => {
+    		this.createCardElement = createCardElement;
+    		this.createRowElement = createRowElement;
+    		
+    		let config = this.helpers.getLovelace().config;
+    		
+    		let preload = config.preload;
+    		
+    		let preload_cards = config.preload_cards ? 
+    			config.preload_cards : 
+    			(config.preload ? config.preload : []);
+    		
+    		let preload_rows = config.preload_rows ? 
+    			config.preload_rows : [];
+    			
+    			
+    		if(preload){
+    			console.warn("Use of preload option is deprecated and may be removed in a leter version. Please use preload_cards and preload_rows");
+    		}
+    		
+    		preload_cards.forEach(cardtype => {
+    			this.preloadElement("card", cardtype);	
+    		});
+    		
+    		preload_rows.forEach(cardtype => {
+    			this.preloadElement("row", cardtype);	
+    		});
+    	});
+	}
 }
 
-preloadCards();
+const preloader = new Preloader();
+
+preloader.preloadCards();
