@@ -10,7 +10,7 @@ class Preloader {
 					return;
 				}
 				
-				console_error(...arguments);
+				this.console_error(...arguments);
 			};
 			
 			if(type == "card"){
@@ -20,7 +20,7 @@ class Preloader {
 				this.createRowElement({type: name});
 			}
 			
-			//window.console.error = this.console_error;
+			window.console.error = this.console_error;
 			console.log(`Preloaded ${type} ${name}`);
 	}
 
