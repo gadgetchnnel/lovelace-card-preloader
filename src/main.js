@@ -1,6 +1,7 @@
+import {lovelace} from "card-tools/src/hass";
+
 class Preloader {
 	constructor(){
- 		this.helpers = require('custom-card-helpers');
 		this.console_error = window.console.error;
  	}
  	
@@ -29,7 +30,7 @@ class Preloader {
     		this.createCardElement = createCardElement;
     		this.createRowElement = createRowElement;
     		
-    		let config = this.helpers.getLovelace().config;
+    		let config = lovelace().config;
     		
     		let preload = config.preload;
     		

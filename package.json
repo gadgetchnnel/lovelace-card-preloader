@@ -19,7 +19,7 @@
   },
   "main": "webpack.config.js",
   "dependencies": {
-    "custom-card-helpers": "^1.4.0"
+    "card-tools": "github:thomasloven/lovelace-card-tools"
   },
   "keywords": []
 }
