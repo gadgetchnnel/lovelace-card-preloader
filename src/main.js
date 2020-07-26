@@ -2,16 +2,16 @@ import {lovelace} from "card-tools/src/hass";
 
 class Preloader {
 	constructor(){
-		this.console_error = window.console.error;
+		window.original_console_error = window.console.error;
  	}
  	
 	preloadElement(type, name) {
 			window.console.error = function(){
-				if(arguments[0].includes(name)){
+				if(arguments.length > 1 && arguments[1].includes(name)){
 					return;
 				}
 				
-				this.console_error(...arguments);
+				window.original_console_error(...arguments);
 			};
 			
 			if(type == "card"){
@@ -21,7 +21,7 @@ class Preloader {
 				this.createRowElement({type: name});
 			}
 			
-			window.console.error = this.console_error;
+			window.console.error = window.original_console_error;
 			console.log(`Preloaded ${type} ${name}`);
 	}
 
